@@ -12,7 +12,7 @@ services:
 
   backend:
     image: andreacb/backend_dockerhub:latest
-    container_name: backend_express
+    container_name: backend_express_dockerhub
     restart: always
     ports:
       - "3001:3000"
