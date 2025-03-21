@@ -33,12 +33,12 @@ app.use(express.json());
 
 // Ruta para obtener usuarios
 app.get('/usuarios', async (req, res) => {
-  try {
-    const usuarios = await Usuarios.find(); 
-    res.json(usuarios);
-  } catch (error) {
-    res.status(500).json({ message: 'Error al obtener usuarios', error });
-  }
+    try {
+        const usuarios = await Usuarios.find();
+        res.json(usuarios);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener usuarios', error });
+    }
 });
 
 // Iniciar servidor
