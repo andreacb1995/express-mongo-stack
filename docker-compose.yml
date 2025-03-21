@@ -11,7 +11,7 @@ services:
       - mongo_data:/data/db
 
   backend:
-    image: andreacb/backend_dockerHub:latest
+    image: andreacb/backend_dockerhub:latest
     container_name: backend_express
     restart: always
     ports:
