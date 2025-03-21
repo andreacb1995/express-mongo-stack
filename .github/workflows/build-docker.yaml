@@ -12,9 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Construir imagen
-        run: docker build -t andreacb/ejemplo1:latest .
+        run: docker build -t andreacb/ejemplo2:latest .
       - name: Iniciar sesión en Docker Hub
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Subir imagen
-        run: docker push andreacb/ejemplo1:latest
+        run: docker push andreacb/ejemplo2:latest
 
