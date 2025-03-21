@@ -1,20 +1,25 @@
 name: Crear y subir imagen de docker
 on:
-  push:  
+  push:
     branches:
       - master  
   workflow_dispatch:  
-  
+
 jobs:
   publish_images:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Construir imagen
-        run: docker build -t andreacb/ejemplo2:latest .
+      
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
       - name: Iniciar sesión en Docker Hub
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      - name: Subir imagen
-        run: docker push andreacb/ejemplo2:latest
+      
+      - name: Construir y subir imagen
+        run: |
+          docker build -t andreacb/backend_dockerHub:latest .
+          docker push andreacb/backend_dockerHub:latest
 
