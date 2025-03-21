@@ -22,12 +22,11 @@ app.get("/", (req, res) => {
 
 // Definición del esquema y modelo de usuario
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  // otros campos según tu modelo
+    _id: String,
+    usuario: String
 });
 
-const User = mongoose.model('User', userSchema);
+const Usuarios = mongoose.model('usuarios', userSchema);
 
 // Middleware para parsear JSON
 app.use(express.json());
@@ -35,7 +34,7 @@ app.use(express.json());
 // Ruta para obtener usuarios
 app.get('/usuarios', async (req, res) => {
   try {
-    const usuarios = await User.find(); 
+    const usuarios = await Usuarios.find(); 
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener usuarios', error });
