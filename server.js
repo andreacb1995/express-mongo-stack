@@ -20,6 +20,28 @@ app.get("/", (req, res) => {
     res.send("¡Hola desde Express en Docker con MongoDB!");
 });
 
+// Definición del esquema y modelo de usuario
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  // otros campos según tu modelo
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Middleware para parsear JSON
+app.use(express.json());
+
+// Ruta para obtener usuarios
+app.get('/usuarios', async (req, res) => {
+  try {
+    const usuarios = await User.find(); 
+    res.json(usuarios);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener usuarios', error });
+  }
+});
+
 // Iniciar servidor
 app.listen(port, "0.0.0.0", () => {
     console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
