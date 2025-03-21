@@ -20,6 +20,6 @@ jobs:
       
       - name: Construir y subir imagen
         run: |
-          docker build -t tu_usuario_dockerhub/backend:latest .
-          docker push tu_usuario_dockerhub/backend:latest
+          docker build -t andreacb/backend_dockerhub:latest .
+          docker push andreacb/backend_dockerhub:latest
 
