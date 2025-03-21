@@ -1,6 +1,9 @@
 name: Crear y subir imagen de docker
 on:
-  [workflow_dispatch]  
+  push:  
+    branches:
+      - master  
+  workflow_dispatch:  
   
 jobs:
   publish_images:
@@ -11,7 +14,7 @@ jobs:
       - name: Construir imagen
         run: docker build -t andreacb/ejemplo1:latest .
       - name: Iniciar sesión en Docker Hub
-        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker  -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Subir imagen
         run: docker push andreacb/ejemplo1:latest
 
